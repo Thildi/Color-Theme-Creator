@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm"; // Importiere ColorForm für die Bearbeitung
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard"; // Importiere CopyToClipboard
 
 export default function Color({ color, deleteColor, onUpdateColor }) {
   const [toggleDelete, setToggleDelete] = useState(false);
@@ -44,7 +45,12 @@ export default function Color({ color, deleteColor, onUpdateColor }) {
         </>
       ) : (
         <>
-          <h3 className="color-card-headline">{color.hex}</h3>
+          <h3 className="color-card-headline">
+            <span className="hex-color">{color.hex}</span>
+            <span className="copy-button-wrapper">
+              <CopyToClipboard color={color.hex} />
+            </span>
+          </h3>
           <h4>{color.role}</h4>
           <p>Contrast: {color.contrastText}</p>
           <section className="color-delete-section">

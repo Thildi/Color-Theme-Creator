@@ -4,8 +4,17 @@
 }
 
 .color-card-headline {
-  display: inline;
-  padding: 2px 6px;
-  background: black;
-  color: white;
+  display: flex; /* Flexbox verwenden */
+  align-items: center; /* Vertikal zentrieren */
+}
+
+.hex-color {
+  padding: 2px 6px; /* Padding um den Hex-Code */
+  background: black; /* Hintergrund nur für den Hex-Code */
+  color: white; /* Textfarbe */
+}
+
+.copy-button-wrapper {
+  margin-left: 10px; /* Abstand zwischen dem Hex-Code und dem Button */
+  display: inline-block; /* Stellt sicher, dass der Wrapper nicht die gesamte Breite einnimmt */
 }
