@@ -35,6 +35,7 @@ export default function Color({ color, deleteColor, onUpdateColor }) {
           <ColorForm
             initialData={color} // Übergebe die aktuellen Farbdaten als Initialwerte
             onSubmitColor={handleUpdateColor} // Funktion zum Aktualisieren der Farbe
+            isEdit={true} // Setze isEdit auf true für den Bearbeitungsmodus
           />
           {/* Cancel-Button zum Beenden des Editiermodus */}
           <button type="button" onClick={() => setEdit(false)}>
