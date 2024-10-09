@@ -37,7 +37,7 @@ export default function ColorForm({
         <ColorInput id="contrastText" defaultValue={initialData.contrastText} />
       </label>
       <br />
-      <button>ADD COLOR</button>
+      <button>Add color</button>
     </form>
   );
 }
