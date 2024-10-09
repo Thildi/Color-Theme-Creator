@@ -8,22 +8,31 @@ import { useState } from "react";
 function App() {
   const [colors, setColors] = useState(initialColors);
 
-  const handleAddColor = (newColor) => {
+  function addColor(newColor) {
     const colorWithId = { ...newColor, id: uid() };
-    setColors([colorWithId, ...colors]);
-  };
+    setColors((prevColors) => [colorWithId, ...prevColors]);
+  }
+
+  function deleteColor(id) {
+    setColors(colors.filter((color) => color.id !== id));
+  }
 
   return (
     <>
       <h1>Theme Creator</h1>
 
-      <ColorForm onSubmitColor={handleAddColor} />
+      <ColorForm onSubmitColor={addColor} />
 
-      {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      {colors.length === 0 ? (
+        <p>No colors... start by adding one!</p>
+      ) : (
+        colors.map((color) => {
+          return (
+            <Color key={color.id} color={color} deleteColor={deleteColor} />
+          );
+        })
+      )}
     </>
   );
 }
-
 export default App;
