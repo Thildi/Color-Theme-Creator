@@ -2,10 +2,50 @@ import { useState } from "react";
 import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm"; // Importiere ColorForm für die Bearbeitung
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard"; // Importiere CopyToClipboard
+import { useEffect } from "react";
 
-export default function Color({ color, deleteColor, onUpdateColor }) {
+// Funktion zur Rückgabe der richtigen Klasse basierend auf dem Kontrastwert
+function getContrastClass(contrast) {
+  switch (contrast.toLowerCase()) {
+    case "yup":
+      return "contrast-yup";
+    case "kinda":
+      return "contrast-kinda";
+    case "nope":
+      return "contrast-nope";
+    default:
+      return "";
+  }
+}
+
+export default function Color({ color, onDeleteColor, onUpdateColor }) {
   const [toggleDelete, setToggleDelete] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [contrast, setContrast] = useState("");
+
+  useEffect(() => {
+    async function postFetch() {
+      try {
+        const response = await fetch(
+          "https://www.aremycolorsaccessible.com/api/are-they",
+          {
+            method: "POST",
+            body: JSON.stringify({ colors: [color.hex, color.contrastText] }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const { overall } = await response.json();
+        setContrast(overall);
+      } catch (error) {
+        console.error("Error fetching contrast score:", error);
+        setContrast("Error");
+      }
+    }
+
+    postFetch();
+  }, [color]);
 
   // Funktion zum Löschen der Farbe
   function handleDelete(id) {
@@ -13,7 +53,7 @@ export default function Color({ color, deleteColor, onUpdateColor }) {
       setToggleDelete(true);
       setEdit(false); // Setze den Editiermodus zurück, wenn wir den Löschmodus aktivieren
     } else {
-      deleteColor(id);
+      onDeleteColor(id);
     }
   }
 
@@ -53,6 +93,10 @@ export default function Color({ color, deleteColor, onUpdateColor }) {
           </h3>
           <h4>{color.role}</h4>
           <p>Contrast: {color.contrastText}</p>
+          <p className={getContrastClass(contrast)}>
+            Overall Contrast Score: {contrast}
+          </p>
+
           <section className="color-delete-section">
             {toggleDelete && (
               <>
