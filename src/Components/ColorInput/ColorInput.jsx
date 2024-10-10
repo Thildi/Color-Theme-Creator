@@ -8,7 +8,7 @@ export default function ColorInput({ id, defaultValue }) {
   }
 
   return (
-    <>
+    <div className="color-input-container">
       <input
         type="text"
         id={id}
@@ -17,6 +17,6 @@ export default function ColorInput({ id, defaultValue }) {
         onChange={handleInputValue}
       />
       <input type="color" value={inputValue} onChange={handleInputValue} />
-    </>
+    </div>
   );
 }

@@ -1,43 +1,90 @@
 .color-card {
-  margin: 0px 10px;
-  padding: 5px;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .color-card-headline {
-  display: flex; /* Flexbox verwenden */
-  align-items: center; /* Vertikal zentrieren */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .hex-color {
-  padding: 2px 6px; /* Padding um den Hex-Code */
-  background: black; /* Hintergrund nur für den Hex-Code */
-  color: white; /* Textfarbe */
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+  letter-spacing: 1px;
 }
 
-.copy-button-wrapper {
-  margin-left: 10px; /* Abstand zwischen dem Hex-Code und dem Button */
-  display: inline-block; /* Stellt sicher, dass der Wrapper nicht die gesamte Breite einnimmt */
+.copy-button-wrapper button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
 }
 
-/* Allgemeine Stile für alle Kontrast-Absätze */
+.copy-button-wrapper button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.color-card h4 {
+  margin: 10px 0;
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
 .contrast-yup,
 .contrast-kinda,
 .contrast-nope {
-  color: black;
-  padding: 0 5px;
-  margin-bottom: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin: 5px 0;
   display: inline-block;
 }
 
-/* Konkrete Stile je nach Kontrastbewertung */
 .contrast-yup {
-  background-color: lightgreen;
+  background-color: #48bb78;
+  color: white;
 }
 
 .contrast-kinda {
-  background-color: lightsalmon;
+  background-color: #ed8936;
+  color: white;
 }
 
 .contrast-nope {
-  background-color: lightcoral;
+  background-color: #f56565;
+  color: white;
+}
+
+.color-delete-section {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.color-delete-section button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.color-card-hightlight {
+  font-weight: bold;
+  color: #f56565;
 }
