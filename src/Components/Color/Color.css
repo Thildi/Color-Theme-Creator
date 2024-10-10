@@ -18,3 +18,26 @@
   margin-left: 10px; /* Abstand zwischen dem Hex-Code und dem Button */
   display: inline-block; /* Stellt sicher, dass der Wrapper nicht die gesamte Breite einnimmt */
 }
+
+/* Allgemeine Stile für alle Kontrast-Absätze */
+.contrast-yup,
+.contrast-kinda,
+.contrast-nope {
+  color: black;
+  padding: 0 5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* Konkrete Stile je nach Kontrastbewertung */
+.contrast-yup {
+  background-color: lightgreen;
+}
+
+.contrast-kinda {
+  background-color: lightsalmon;
+}
+
+.contrast-nope {
+  background-color: lightcoral;
+}

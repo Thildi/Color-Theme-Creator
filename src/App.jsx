@@ -10,16 +10,16 @@ function App() {
     defaultValue: initialColors,
   });
 
-  function addColor(newColor) {
+  function handleAddColor(newColor) {
     const colorWithId = { ...newColor, id: uid() };
     setColors((prevColors) => [colorWithId, ...prevColors]);
   }
 
-  function deleteColor(id) {
+  function handleDeleteColor(id) {
     setColors(colors.filter((color) => color.id !== id));
   }
 
-  function editColor(colorId, updatedColors) {
+  function handleEditColor(colorId, updatedColors) {
     setColors((prev) => {
       const editColor = prev.map((color) =>
         color.id === colorId ? { ...color, ...updatedColors } : color
@@ -32,7 +32,7 @@ function App() {
     <>
       <h1>Theme Creator</h1>
 
-      <ColorForm onSubmitColor={addColor} />
+      <ColorForm onSubmitColor={handleAddColor} />
 
       {colors.length === 0 ? (
         <p>No colors... start by adding one!</p>
@@ -42,8 +42,8 @@ function App() {
             <Color
               key={color.id}
               color={color}
-              deleteColor={deleteColor}
-              onUpdateColor={editColor}
+              onDeleteColor={handleDeleteColor}
+              onUpdateColor={handleEditColor}
             />
           );
         })
